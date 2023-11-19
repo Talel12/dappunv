@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./register.css"
 const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -28,12 +28,17 @@ const Register = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">Register</div>
-            <div className="card-body">
+    <main>
+    <div class="containeer ">
+    <div className="row justify-content-center">
+    
+  <div className="col-md-6">
+    
+    <div className="card">
+     
+      <div className="card-header"> <h1 >Register</h1> </div>
+      <div className="card-body">
+          
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">
@@ -103,19 +108,20 @@ const Register = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btnn">
                   Register
                 </button>
               </form>
             </div>
-            <h3>OR</h3>
+            <h3>OU</h3>
             <Link to={"/login"}>
-              <button className="btn btn-warning">Login</button>
+              <button className="boot">Login</button>
             </Link>
           </div>
         </div>
       </div>
     </div>
+   </main>
   );
 };
 

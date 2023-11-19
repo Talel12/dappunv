@@ -7,7 +7,7 @@ const Etudiant = () => {
     <div>
       <h1>Etudiant</h1>
       <ProfileEtudiant />
-      <ListEtudiants />
+      
     </div>
   );
 };

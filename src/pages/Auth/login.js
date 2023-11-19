@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./login.css"
 
 export const Login = () => {
   // let navigate = useNavigate()
@@ -54,54 +55,72 @@ export const Login = () => {
     //     </div>
     //   </div>
     // </form>
-    <div class="container mt-5">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">Login</div>
-            <div class="card-body">
-              <form onSubmit={onSubmit}>
-                <div class="mb-3">
-                  <label for="username" class="form-label">
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    required
-                    value={credentials.email}
-                    onChange={onChange}
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    required
-                    value={credentials.password}
-                    onChange={onChange}
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary">
-                  Login
-                </button>
-              </form>
-            </div>
-            <h3>OR</h3>
-            <Link to={"/register"}>
-              <button className="btn btn-warning">Crée un Compte</button>
-            </Link>
+    <main>
+    <div class="containeer ">
+    <div className="row justify-content-center">
+    
+  <div className="col-md-6">
+    
+    <div className="card">
+     
+      <div className="card-header"> <h1 >Login</h1> </div>
+      <div className="card-body">
+        <form onSubmit={onSubmit}>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control" // Adjust this class to control the width
+              id="username"
+              name="username"
+              required
+              value={credentials.email}
+              onChange={onChange}
+            />
           </div>
-        </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control" // Adjust this class to control the width
+              id="password"
+              name="password"
+              required
+              value={credentials.password}
+              onChange={onChange}
+            />
+          </div>
+         
+          <button type="submit" className="btnn">
+            Login
+          </button>
+        
+        </form>
+       
       </div>
+      <h3>OU</h3>
+      <Link to={"/register"}>
+        <button className="boot">Crée un Compte</button>
+      </Link>
     </div>
+ 
+  </div>
+ 
+</div>
+
+
+    </div>
+
+
+       
+   
+
+
+    </main>
   );
 };
 
