@@ -3,7 +3,8 @@ import React from "react";
 const NotFound = () => {
   return (
     <div>
-      <h1>404 Not Found</h1>
+      
+      <img src="https://business.trustedshops.fr/hubfs/1-TS_B2B/content/FR/20220712-erreur-404/erreur-404-NL.jpg" alt="erreur page" style={{width:"70vw", paddingTop:"200px", marginRight:"200px"}}></img>
     </div>
   );
 };
