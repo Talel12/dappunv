@@ -33,10 +33,7 @@ const ListDiplome = () => {
   return (
     <div className="container">
       <h2 className="text-center"> List Diplomes </h2>
-      <Link to="/add-employee" className="bottt">
-        {" "}
-        Ajouter un Diplome{" "}
-      </Link>
+     
       <table className="table table-bordered table-striped">
       <thead style={{backgroundColor:"RosyBrown", height:"50px", color:"white", textAlign:"center"}}>
         <th>  Image </th>

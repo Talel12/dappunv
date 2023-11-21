@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileEmployee from "./ProfileEmployee";
 import ListEmployees from "./ListEmployees";
+import Offrestage  from "./offrestage"
 
 const Employee = () => {
   return (
@@ -12,7 +13,7 @@ const Employee = () => {
       // add stage or offre 
       // Verification d'un hashage d'un diplome */}
       <ProfileEmployee />
-      <ListEmployees />
+      <Offrestage />
     </div>
   );
 };

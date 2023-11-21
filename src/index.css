@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.bottt{
+  background-color: rgba(141, 154, 154, 0.784);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+ display: flex;
+  justify-content: flex-start;
+  align-self: start;
+  width: 180px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

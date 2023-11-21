@@ -14,7 +14,7 @@ import Admin from "./pages/Admin";
 import Director from "./pages/Director";
 import Etudiant from "./pages/Etudiant";
 import AddEtudiant from "./pages/Etudiant/AddEtudiant";
-
+import Offrestage  from "./pages/Employee/offrestage";
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
@@ -37,6 +37,7 @@ const App = () => {
             element={<Home landingPageData={landingPageData} />}
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/offres" element={<Offrestage />} />
           <Route path="/register" element={<Register />} />
 
           <Route path="/employee" element={<Employee />} />
