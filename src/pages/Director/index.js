@@ -6,7 +6,7 @@ const Director = () => {
   return (
     <div>
       <h1>Director</h1>
-      //signer les diplomes
+      
       <ProfileDirector />
       <ListDiplome />
     </div>

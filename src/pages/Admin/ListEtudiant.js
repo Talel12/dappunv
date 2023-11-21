@@ -33,17 +33,20 @@ const ListEtudiant = () => {
   return (
     <div className="container">
       <h2 className="text-center"> List Etudiants </h2>
-      <Link to="/add-employee" className="btn btn-primary mb-2">
+      <Link to="/add-employee" className="bottt">
         {" "}
-        Add Etudiant{" "}
+        Ajouter un Etudiant{" "}
       </Link>
       <table className="table table-bordered table-striped">
-        <thead>
-          <th> Employee Id </th>
-          <th> Employee First Name </th>
-          <th> Employee Last Name </th>
-          <th> Employee Email Id </th>
+        <thead style={{backgroundColor:"cornflowerblue", height:"50px", color:"white", textAlign:"center"}}>
+        <th>  #Id </th>
+          <th> Nom </th>
+          <th> Prénom </th>
+          <th> N° CIN</th>
+          <th> Class </th>
+          <th> Moyenne</th>
           <th> Actions </th>
+          <th> Diplome </th>
         </thead>
         <tbody>
           {employees.map((employee) => (

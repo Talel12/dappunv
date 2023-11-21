@@ -9,9 +9,7 @@ const Admin = () => {
     <div>
       <h1>Admin</h1>
       <ProfileAdmin />
-      <ListEtudiant />
-      <ListDiplome />
-      <ListEmployees />
+    
     </div>
   );
 };

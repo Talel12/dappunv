@@ -29,9 +29,9 @@ a, a:hover {
 
 .wrapper {
   width: 100%;
-  width: 100%;
-  height: auto;
-  min-height: 100vh;
+
+
+
   padding: 50px 20px;
   padding-top: 100px;
   display: flex;
@@ -40,7 +40,9 @@ a, a:hover {
 
 }
 
-
+th{
+  text-align: center !important;
+}
 .profile-card {
   width: 90vw;
   min-height: 460px;
@@ -79,10 +81,10 @@ a, a:hover {
     width:800px;
      margin: auto;
      display: flex;
-     flex-direction: start;
-     align-self: flex-start;
-     justify-content: flex-start;
-     margin-right: 300px !important;
+    
+     align-self:center;
+     justify-content: center;
+
 }
 .profile-card__img img {
   display: block;

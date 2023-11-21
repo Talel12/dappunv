@@ -57,6 +57,13 @@ const ProfileAdmin = () => {
     
       </Panel>
       <Panel
+        title="LIST EMPLOYEES"
+        isActive={activeIndex === 2}
+        onShow={() => setActiveIndex(2)}
+      >
+        <div className="bodylist"> <ListEmployees /></div>
+      </Panel>
+      <Panel
         title="LIST DIPLOMES"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
@@ -64,13 +71,7 @@ const ProfileAdmin = () => {
        <div className="bodylist"> <ListDiplome /></div>
   
       </Panel>
-      <Panel
-        title="LIST EMPLOYEES"
-        isActive={activeIndex === 2}
-        onShow={() => setActiveIndex(2)}
-      >
-        <div className="bodylist"> <ListEmployees /></div>
-      </Panel>
+     
     
         </div>
 

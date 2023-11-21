@@ -33,17 +33,21 @@ const ListEmployees = () => {
   return (
     <div className="container">
       <h2 className="text-center"> List Employees </h2>
-      <Link to="/add-employee" className="btn btn-primary mb-2">
+      <Link to="/add-employee" className="bottt">
         {" "}
-        Add Employee{" "}
+        Ajouter un Employee{" "}
       </Link>
       <table className="table table-bordered table-striped">
-        <thead>
-          <th> Employee Id </th>
-          <th> Employee First Name </th>
-          <th> Employee Last Name </th>
-          <th> Employee Email Id </th>
+      <thead style={{backgroundColor:"teal", height:"50px", color:"white", textAlign:"center"}}>
+        <th>  #Id </th>
+          <th> Nom </th>
+          <th> Prénom </th>
+          <th> N° CIN</th>
+          <th> Secteur </th>
+          <th> Salaire</th>
           <th> Actions </th>
+         
+        
         </thead>
         <tbody>
           {employees.map((employee) => (
