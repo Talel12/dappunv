@@ -11,7 +11,7 @@ main{
 display: flex;
     background: linear-gradient(90deg, #c5d4f4, cornflowerblue);
 }
-h3
+.greyh
 {
     text-align: center;
     color: gray;
@@ -57,7 +57,7 @@ h3
       inset -4px -4px 6px 0 rgba(255,255,255,.2),
       inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
   }
-h1{
+.titl{
     color: grey!important;
     text-align: center;
 }

@@ -30,7 +30,7 @@ const ProfileAdmin = () => {
 <div class="wrapper">
   <div class="profile-card js-profile-card">
     <div class="profile-card__img">
-      <img src="https://icon-library.com/images/admin-icon/admin-icon-12.jpg" alt="profile card"/>
+      <img src="https://icon-library.com/images/admin-icon/admin-icon-12.jpg" alt="profile card" className="imagep"/>
     </div>
 
     <div class="profile-card__cnt js-profile-cnt">

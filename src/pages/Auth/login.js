@@ -63,7 +63,7 @@ export const Login = () => {
     
     <div className="card">
      
-      <div className="card-header"> <h1 >Login</h1> </div>
+      <div className="card-header"> <h1 className="titl">Login</h1> </div>
       <div className="card-body">
         <form onSubmit={onSubmit}>
           <div className="mb-3">
@@ -102,7 +102,7 @@ export const Login = () => {
         </form>
        
       </div>
-      <h3>OU</h3>
+      <h3 className="greyh">OU</h3>
       <Link to={"/register"}>
         <button className="boot">Crée un Compte</button>
       </Link>

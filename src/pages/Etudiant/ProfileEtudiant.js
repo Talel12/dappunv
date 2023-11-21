@@ -8,7 +8,7 @@ const ProfileEmployee = () => {
 	<div class="outer">
 		<div class="content animated fadeInLeft">
 			<span class="bg animated fadeInDown">Admise</span>
-			<h1>Asile Dawed</h1>
+			<h1 className="tiitre">Asile Dawed</h1>
 			<div style={{display:"flex",flexDirection:"column"}}>
         <div class="coordonne">
           <h5>Age:</h5>
@@ -32,7 +32,7 @@ const ProfileEmployee = () => {
         </div>
         <div class="coordonne">
           <h5> Moyenne générale</h5>
-          <h6>13</h6>
+          <h6 className="littl">13</h6>
           
         </div>
       </div>
@@ -42,7 +42,7 @@ const ProfileEmployee = () => {
 			</div>
 			
 		</div>
-		<img src="https://o.remove.bg/downloads/08a55384-87f3-4388-afcf-333f36979d09/jeune-etudiante-femme-portant-veste-jean-lunettes-tenant-dossiers-colores-montrant-pouce-vers-haut-rose-removebg-preview.png" width="400px" height="400px" class="animated fadeInRight" style={{marginTop:"40px"}}></img>
+		<img src="https://media.istockphoto.com/id/1473893094/photo/beautiful-young-arab-female-student-standing-outdoors-with-workbooks-in-hands.jpg?s=612x612&w=0&k=20&c=QfXcfE51DyJVA5QDQw16ejTIEN4fPW8eMwoyMsJfLSg=" width="400px" height="400px" class="animated fadeInRight" style={{marginTop:"40px"}} className="profileimg"></img>
 	</div>
 	
 </div></div>;

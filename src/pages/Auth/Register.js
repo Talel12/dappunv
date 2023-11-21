@@ -36,7 +36,7 @@ const Register = () => {
     
     <div className="card">
      
-      <div className="card-header"> <h1 >Register</h1> </div>
+      <div className="card-header"> <h1 className="titl">Register</h1> </div>
       <div className="card-body">
           
               <form onSubmit={handleSubmit}>
@@ -113,7 +113,7 @@ const Register = () => {
                 </button>
               </form>
             </div>
-            <h3>OU</h3>
+            <h3 className="greyh">OU</h3>
             <Link to={"/login"}>
               <button className="boot">Login</button>
             </Link>
