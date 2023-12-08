@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import userServices from "../../services/userServices";
+import userServices from "../../services/user.services";
 
 const AddEtudiant = () => {
   const [firstName, setFirstName] = useState("");

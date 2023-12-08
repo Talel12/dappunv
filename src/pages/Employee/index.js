@@ -1,9 +1,12 @@
 import React from "react";
 import ProfileEmployee from "./ProfileEmployee";
 import ListEmployees from "./ListEmployees";
-import Offrestage  from "./offrestage"
+import Offrestage from "./offrestage";
+import employeeServices from "../../services/employee.services";
 
 const Employee = () => {
+  const employers = employeeServices.getAllEmployees();
+  console.log(employers);
   return (
     <div>
       <h1>Employee</h1>

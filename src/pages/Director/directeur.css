@@ -1,31 +1,32 @@
-body{
-    font: 1em sans-serif;
- }
- .secton{
-     height: 250px;
-     width: 80vw;
-     background-color: white;
-     border-radius:15px;
-     text-align: center;
-     box-shadow: 1px 2px 15px 2px gray;
-     margin-left: auto;
-     margin-right: auto;
-     margin-bottom: 30px;
-     margin-top: 100px;
-     border-top: 6px solid rgba(48, 154, 183, 0.869);
- }
- .imagee{
-     height: 150px;
-     width: 150px;
-     border: 7px solid rgb(218, 215, 215);
-     border-radius: 200px;
-     margin-top: -100px;
-     margin-bottom: 10px;
- }
-.nom{
-     color: rgba(48, 154, 183, 0.869);;
- }
- #title{
-     font-style: italic;
-     color:gray
- }
+body {
+  font: 1em sans-serif;
+}
+.secton {
+  height: 250px;
+  width: 80vw;
+  background-color: white;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 1px 2px 15px 2px gray;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  padding-top: 20px;
+  border-top: 6px solid rgba(48, 154, 183, 0.869);
+}
+.imagee {
+  height: 150px;
+  width: 150px;
+  border: 7px solid rgb(218, 215, 215);
+  border-radius: 200px;
+  margin-top: -100px;
+  margin-bottom: 10px;
+}
+.nom {
+  color: rgba(48, 154, 183, 0.869);
+}
+#title {
+  font-style: italic;
+  color: gray;
+}

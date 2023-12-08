@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import EmployeeService from "../../services/employeeServices";
+import { useSelector } from "react-redux";
 
 const ListEmployees = () => {
-  const [employees, setEmployees] = useState([]);
-
-  useEffect(() => {
-    getAllEmployees();
-  }, []);
-
-  const getAllEmployees = () => {
-    EmployeeService.getAllEmployees()
-      .then((response) => {
-        setEmployees(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
+  const employees = useSelector((store) => store?.employees?.list);
   const deleteEmployee = (employeeId) => {
-    EmployeeService.deleteEmployee(employeeId)
-      .then((response) => {
-        getAllEmployees();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // Replace the following line with your actual delete logic
+    console.log(`Deleting employee with ID: ${employeeId}`);
   };
 
   return (
@@ -38,24 +17,27 @@ const ListEmployees = () => {
         Ajouter un Employee{" "}
       </Link>
       <table className="table table-bordered table-striped">
-      <thead style={{backgroundColor:"teal", height:"50px", color:"white", textAlign:"center"}}>
-        <th>  #Id </th>
-          <th> Nom </th>
-          <th> Prénom </th>
-          <th> N° CIN</th>
-          <th> Secteur </th>
-          <th> Salaire</th>
-          <th> Actions </th>
-         
-        
+        <thead
+          style={{
+            backgroundColor: "teal",
+            height: "50px",
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          <th>#Id</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Nom Société</th>
+          <th>Actions</th>
         </thead>
         <tbody>
           {employees.map((employee) => (
             <tr key={employee.id}>
-              <td> {employee.id} </td>
-              <td> {employee.firstName} </td>
-              <td>{employee.lastName}</td>
-              <td>{employee.emailId}</td>
+              <td>{employee.id}</td>
+              <td>{employee.nom}</td>
+              <td>{employee.prenom}</td>
+              <td>{employee.nomSociete}</td>
               <td>
                 <Link
                   className="btn btn-info"
@@ -68,7 +50,6 @@ const ListEmployees = () => {
                   onClick={() => deleteEmployee(employee.id)}
                   style={{ marginLeft: "10px" }}
                 >
-                  {" "}
                   Delete
                 </button>
               </td>

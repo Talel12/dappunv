@@ -1,25 +1,28 @@
 import axios from "axios";
 
-const USER_BASE_REST_API_URL = "http://localhost:8080/api";
+const USER_BASE_REST_API_URL = "http://localhost:8080/api/";
 
 class userServices {
-  getAllEmployees() {
-    return axios.get(USER_BASE_REST_API_URL);
+  getAllusers() {
+    const token = localStorage.getItem("token");
+    return axios.get(USER_BASE_REST_API_URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
-  createEmployee(user) {
+  createuser(user) {
     return axios.post(USER_BASE_REST_API_URL, user);
   }
 
-  getEmployeeById(userId) {
+  getuserById(userId) {
     return axios.get(USER_BASE_REST_API_URL + "/" + userId);
   }
 
-  updateEmployee(userId, user) {
+  updateuser(userId, user) {
     return axios.put(USER_BASE_REST_API_URL + "/" + userId, user);
   }
 
-  deleteEmployee(userId) {
+  deleteuser(userId) {
     return axios.delete(USER_BASE_REST_API_URL + "/" + userId);
   }
 }

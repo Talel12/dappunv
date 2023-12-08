@@ -1,69 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import EmployeeService from "../../services/employeeServices";
+import { useSelector } from "react-redux";
 
 const ListDiplome = () => {
-  const [employees, setEmployees] = useState([]);
+  const diplomas = useSelector((store) => store?.diplomas?.list);
 
-  useEffect(() => {
-    getAllEmployees();
-  }, []);
-
-  const getAllEmployees = () => {
-    EmployeeService.getAllEmployees()
-      .then((response) => {
-        setEmployees(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const deleteEmployee = (employeeId) => {
-    EmployeeService.deleteEmployee(employeeId)
-      .then((response) => {
-        getAllEmployees();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const deleteDiploma = (diplomaId) => {
+    // Replace the following line with your actual delete logic
+    console.log(`Deleting diploma with ID: ${diplomaId}`);
   };
 
   return (
     <div className="container">
       <h2 className="text-center"> List Diplomes </h2>
-     
       <table className="table table-bordered table-striped">
-      <thead style={{backgroundColor:"RosyBrown", height:"50px", color:"white", textAlign:"center"}}>
-        <th>  Image </th>
-          <th> Id Etudiant </th>
-          <th> Status </th>
-          <th> N° CIN</th>
-          <th> Action </th>
-          
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Id Etudiant</th>
+            <th>N° CIN</th>
+            <th>Action</th>
+            <th>Status</th>
+          </tr>
         </thead>
         <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.id}>
-              <td> {employee.id} </td>
-              <td> {employee.firstName} </td>
-              <td>{employee.lastName}</td>
-              <td>{employee.emailId}</td>
+          {diplomas.map((diploma) => (
+            <tr key={diploma?.id}>
+              <td>{diploma?.id}</td>
+              <td>{diploma?.student?.nom}</td>
+              <td>{diploma?.student?.phoneNumber}</td>
               <td>
-                <Link
+                {/* <Link
                   className="btn btn-info"
-                  to={`/edit-employee/${employee.id}`}
+                  to={`/edit-diploma/${diploma.id}`}
                 >
                   Update
-                </Link>
+                </Link> */}
                 <button
                   className="btn btn-danger"
-                  onClick={() => deleteEmployee(employee.id)}
+                  onClick={() => deleteDiploma(diploma?.id)}
                   style={{ marginLeft: "10px" }}
                 >
-                  {" "}
                   Delete
+                </button>
+              </td>
+              <td>
+                <button
+                  className={`btn btn-${
+                    diploma?.signed ? "success" : "danger"
+                  }`}
+                  disabled={true}
+                  // onClick={() => deleteDiploma(diploma?.id)}
+                >
+                  {diploma?.signed ? "Signed" : "Not Signed"}
                 </button>
               </td>
             </tr>
