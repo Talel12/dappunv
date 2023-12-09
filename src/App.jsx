@@ -22,6 +22,8 @@ import { UploadFileToIPFSView } from "./pages/UploadFile";
 import Web3 from "web3";
 import RedirectProfil from "./components/RedirectProfil";
 import IpfsPreviewer from "./pages/IpfsPreview";
+import OffreEmploiList from "./pages/OffreEmploiList";
+import OffreStageList from "./pages/OffreStageList";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
@@ -36,25 +38,25 @@ const App = () => {
     setLandingPageData(JsonData);
   }, [dispatch]);
   const [state, setState] = useState({});
-  useEffect(() => {
-    loadBlockchainData();
-  }, []);
+  // useEffect(() => {
+  //   loadBlockchainData();
+  // }, []);
 
-  const loadBlockchainData = async () => {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:9545");
-    const accounts = await web3.eth.getAccounts();
-    setState({ account: accounts[0] });
-    // const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS);
-    // setState({ todoList });
-    // const taskCount = await todoList.methods.taskCount().call();
-    // setState({ taskCount });
-    // for (var i = 1; i <= taskCount; i++) {
-    //   const task = await todoList.methods.tasks(i).call();
-    //   setState({
-    //     tasks: [...state.tasks, task],
-    //   });
-    // }
-  };
+  // const loadBlockchainData = async () => {
+  //   const web3 = new Web3(Web3.givenProvider || "http://localhost:9545");
+  //   const accounts = await web3.eth.getAccounts();
+  //   setState({ account: accounts[0] });
+  //   // const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS);
+  //   // setState({ todoList });
+  //   // const taskCount = await todoList.methods.taskCount().call();
+  //   // setState({ taskCount });
+  //   // for (var i = 1; i <= taskCount; i++) {
+  //   //   const task = await todoList.methods.tasks(i).call();
+  //   //   setState({
+  //   //     tasks: [...state.tasks, task],
+  //   //   });
+  //   // }
+  // };
 
   return (
     <div>
@@ -72,7 +74,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/redirect-profil" element={<RedirectProfil />} />
           <Route path="/IpfsPreviewer" element={<IpfsPreviewer />} />
-
+          <Route path="/offresEmplois" element={<OffreEmploiList />} />
+          <Route path="/offresStage" element={<OffreStageList />} />
           <Route
             path="/uploadipfs"
             element={<UploadFileToIPFSView account={state.account} />}

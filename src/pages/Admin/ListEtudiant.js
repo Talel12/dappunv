@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NoterEtudiant from "./NoterEtudiant";
 import NoteView from "./NoteView";
+import styled from "styled-components";
 
 const ListEtudiant = () => {
   const students = useSelector((store) => store?.students?.list);
@@ -85,8 +86,7 @@ const ListEtudiant = () => {
                 </button>
               </td>
               <td>
-                {" "}
-                {student.diploma === null ? (
+                {student.moyenne === 0 ? (
                   <button
                     className="btn btn-danger"
                     onClick={() => {
@@ -101,16 +101,52 @@ const ListEtudiant = () => {
                   <button
                     className="btn btn-danger"
                     onClick={() => {
-                      setShowNoteView(true);
-                      setSelectedStudentView({
-                        etudiant: student,
-                        note: noteTab[i],
-                      });
+                      setShowNoteForm(true);
+                      setSelectedStudent(student);
                     }}
                     style={{ marginLeft: "10px" }}
                   >
-                    Voir Diplome
+                    Update Note
                   </button>
+                )}
+              </td>
+              <td>
+                {" "}
+                {student.diploma ? (
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      setShowNoteView(true);
+                      setSelectedStudentView(student);
+                    }}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Voir Note
+                  </button>
+                ) : student.moyenne === 0 ? (
+                  <button
+                    className="btn btn-danger"
+                    // onClick={() => {
+                    //   setShowNoteForm(true);
+                    //   setSelectedStudent(student);
+                    // }}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Pas de note
+                  </button>
+                ) : student.admis ? (
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      setShowNoteView(true);
+                      setSelectedStudentView(student);
+                    }}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Voir Note
+                  </button>
+                ) : (
+                  <h3>Refuser</h3>
                 )}
               </td>
             </tr>
@@ -122,3 +158,54 @@ const ListEtudiant = () => {
 };
 
 export default ListEtudiant;
+
+const FormModal = styled.div`
+  width: 50vw;
+  max-width: 800px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    label {
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      margin-left: 10px;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+  }
+`;

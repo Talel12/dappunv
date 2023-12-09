@@ -6,7 +6,13 @@ import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { PDFDocument, rgb } from "pdf-lib";
 import axios from "axios";
 import { updateStudent } from "../../redux/studentSlice";
-import { createDiploma } from "../../redux/diplomaSlice";
+import {
+  createDiploma,
+  deleteDiploma,
+  fetchAllDiplomas,
+  updateDiploma,
+} from "../../redux/diplomaSlice";
+import styled from "styled-components";
 
 const ListDiplome = () => {
   const diplomas = useSelector((store) => store?.diplomas?.list);
@@ -81,21 +87,30 @@ const ListDiplome = () => {
             pinata_secret_api_key: pinatasecret,
           },
         })
-        .then((res) =>
-          dispatch(createDiploma({ ...diplom, hash: res.data.Hash })).then(
-            (res) => {
-              console.log(res);
-              dispatch(
-                updateStudent({
-                  studentId: diplom?.student?.id,
-                  student: {
-                    ...diplom.student,
-                    diploma: { id: res?.payload?.id },
-                  },
-                })
-              );
-            }
-          )
+        .then(
+          (res) => {
+            console.log(res);
+            dispatch(
+              updateDiploma({
+                diplomaId: diplom.id,
+                diploma: { ...diplom, hash: res?.data?.IpfsHash, signed: true },
+              })
+            ).then(() => dispatch(fetchAllDiplomas()));
+          }
+          // .then(
+          //   (res) => {
+          //     console.log(res);
+          //     dispatch(
+          //       updateStudent({
+          //         studentId: diplom?.student?.id,
+          //         student: {
+          //           ...diplom.student,
+          //           diploma: { id: res?.payload?.id },
+          //         },
+          //       })
+          //     );
+          //   }
+          // )
         );
 
       const ipfsHash = response.data.Hash;
@@ -143,7 +158,8 @@ const ListDiplome = () => {
     handleButtonClick({ ipfsUrl: hash, diplom: diplom });
   };
 
-  const deleteDiploma = (diplomaId) => {
+  const deleteDiplome = (diplomaId) => {
+    dispatch(deleteDiploma(diplomaId));
     // Replace the following line with your actual delete logic
     console.log(`Deleting diploma with ID: ${diplomaId}`);
   };
@@ -184,23 +200,30 @@ const ListDiplome = () => {
                 </a>
               </td>
               <td>
-                <button
-                  className={`btn btn-${
-                    diploma?.signed ? "success" : "danger"
-                  }`}
-                  disabled={diploma?.signed}
-                  onClick={() =>
-                    modifyDiplome({
-                      id: diploma?.id,
-                      hash: diploma?.hash,
-                      diplom: diploma,
-                    })
-                  }
-                >
+                <StatusIndicator status={diploma?.signed}>
                   {diploma?.signed ? "Signé" : "Non Signé"}
-                </button>
+                </StatusIndicator>
               </td>
               <td>
+                {(diploma?.signed === null || diploma?.signed === false) && (
+                  <button
+                    style={{ margin: 8 }}
+                    className={`btn btn-${
+                      diploma?.signed ? "success" : "danger"
+                    }`}
+                    disabled={diploma?.signed}
+                    onClick={() =>
+                      modifyDiplome({
+                        id: diploma?.id,
+                        hash: diploma?.hash,
+                        diplom: diploma,
+                      })
+                    }
+                  >
+                    {" "}
+                    Signer{" "}
+                  </button>
+                )}
                 <Link
                   className="btn btn-info"
                   to={`/edit-diploma/${diploma?.id}`}
@@ -209,7 +232,7 @@ const ListDiplome = () => {
                 </Link>
                 <button
                   className="btn btn-danger"
-                  onClick={() => deleteDiploma(diploma?.id)}
+                  onClick={() => deleteDiplome(diploma?.id)}
                   style={{ marginLeft: "10px" }}
                 >
                   Supprimer
@@ -224,3 +247,11 @@ const ListDiplome = () => {
 };
 
 export default ListDiplome;
+
+const StatusIndicator = styled.div`
+  /* margin-top: 20px; */
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: ${(props) => (props.status === null ? "red" : "green")};
+`;

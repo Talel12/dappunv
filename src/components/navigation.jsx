@@ -36,14 +36,14 @@ const Navigation = (props) => {
             style={{ alignItems: "center", display: "flex" }}
           >
             <li>
-              <a href="/#features" className="page-scroll">
+              <Link to="/offresEmplois" className="page-scroll">
                 Offre d'emploi
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#about" className="page-scroll">
+              <Link to="/offresStage" className="page-scroll">
                 Offre de Stage
-              </a>
+              </Link>
             </li>
 
             {/* <li>

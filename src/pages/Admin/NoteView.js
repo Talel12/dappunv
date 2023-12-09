@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const NoteView = ({ etudiant, setShowNoteView }) => {
+  console.log(etudiant);
   return (
     <DetailsContainer>
       <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -34,30 +35,39 @@ const NoteView = ({ etudiant, setShowNoteView }) => {
         </div>
         <p>{etudiant?.etudiant?.phoneNumber}</p>
         <p>
-          <strong>B2 Français:</strong>{" "}
-          {etudiant.note.b2Francais ? "Oui" : "Non"}
+          <strong>B2 Français:</strong> {etudiant?.b2Francais ? "Oui" : "Non"}
         </p>
         <p>
-          <strong>B2 Anglais:</strong> {etudiant.note.b2Anglais ? "Oui" : "Non"}
+          <strong>B2 Anglais:</strong> {etudiant?.b2Anglais ? "Oui" : "Non"}
         </p>
         <p>
-          <strong>Moyenne:</strong> {etudiant.note.moyenne}
+          <strong>Moyenne:</strong> {etudiant?.moyenne}
         </p>
         <p>
-          <strong>Stage Valide:</strong>{" "}
-          {etudiant.note.stageValide ? "Oui" : "Non"}
+          <strong>Stage Valide:</strong> {etudiant?.stageValide ? "Oui" : "Non"}
         </p>
+        {/* Additional element ("admis" or "refuser") */}
+        <StatusIndicator status={etudiant?.admis}>
+          {etudiant?.admis ? "Admis" : "refuser"}
+        </StatusIndicator>
       </div>
     </DetailsContainer>
   );
 };
 
+const StatusIndicator = styled.div`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: ${(props) => (props.status === "admis" ? "red" : "green")};
+`;
+
 export default NoteView;
 
 const DetailsContainer = styled.div`
   width: 50vw;
-  max-width: 800px; /* Set a maximum width if needed */
-  /* height: auto; */
+  max-width: 800px;
   position: fixed;
   top: 50%;
   left: 50%;

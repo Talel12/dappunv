@@ -32,7 +32,11 @@ export const fetchDiplomaById = createAsyncThunk(
 export const updateDiploma = createAsyncThunk(
   "diplomas/update",
   async ({ diplomaId, diploma }) => {
-    const response = await DiplomaServices.updateDiploma(diplomaId, diploma);
+    console.log(diploma);
+    const response = await DiplomaServices.updateDiploma({
+      diplomaId,
+      diploma,
+    });
     return response.data;
   }
 );

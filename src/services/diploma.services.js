@@ -24,13 +24,14 @@ class DiplomaServices {
     });
   }
 
-  createDiploma = async (diploma) => {
+  createDiploma = async ({ data, student }) => {
     const token = localStorage.getItem("token");
-    console.log("Token:", token); // Log the token to the console for debugging
+    // console.log("Token:", token); // Log the token to the console for debugging
     return axios
-      .post("http://localhost:8080/api/diploma/add", diploma, {
+      .post(`/api/diploma/add/${student}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
@@ -45,17 +46,25 @@ class DiplomaServices {
 
   getDiplomaById(diplomaId) {
     const token = localStorage.getItem("token");
-    return axios.get("http://localhost:8080/api/diploma/" + diplomaId, {
+    return axios.get("/api/diploma/" + diplomaId, {
       headers: { Authorization: `Bearer ${token}` },
     });
   }
 
-  updateDiploma(diplomaId, diploma) {
-    return axios.put(DIPLOMA_BASE_REST_API_URL + "/" + diplomaId, diploma);
+  updateDiploma({ diplomaId, diploma }) {
+    const token = localStorage.getItem("token");
+    console.log(diploma);
+    return axios.put("/api/diploma/update/" + diplomaId, diploma, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   deleteDiploma(diplomaId) {
-    return axios.delete(DIPLOMA_BASE_REST_API_URL + "/" + diplomaId);
+    console.log(diplomaId);
+    const token = localStorage.getItem("token");
+    return axios.delete("/api/diploma/delete/" + diplomaId, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 }
 

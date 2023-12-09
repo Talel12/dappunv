@@ -5,6 +5,7 @@ import studentReducer from "./studentSlice";
 import universityReducer from "./universitySlice";
 import diplomaReducer from "./diplomaSlice";
 import directorReducer from "./directorSlice";
+import offresReducer from "./offreSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,7 +15,7 @@ const store = configureStore({
     universities: universityReducer,
     diplomas: diplomaReducer,
     directors: directorReducer,
-
+    offres: offresReducer,
     // Add other reducers as needed
   },
 });

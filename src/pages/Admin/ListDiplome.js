@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
 const ListDiplome = () => {
   const diplomas = useSelector((store) => store?.diplomas?.list);
@@ -54,6 +56,19 @@ const ListDiplome = () => {
                 >
                   {diploma?.signed ? "Signed" : "Not Signed"}
                 </button>
+              </td>
+              <td>
+                {" "}
+                <a
+                  style={{ padding: "30px 50px" }}
+                  class="cart-btn"
+                  href={`https://ipfs.io/ipfs/${diploma?.hash}`}
+                  target="_blanc"
+                >
+                  <i class="cart-icon ion-bag"></i>
+                  <FontAwesomeIcon icon={faGraduationCap} size="1x" /> Affiche
+                  le diplôme
+                </a>
               </td>
             </tr>
           ))}

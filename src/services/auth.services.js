@@ -26,26 +26,33 @@ const login = ({ username, password }) => {
         // Decode the token to get user information, including role
         const decodedToken = jwtDecode(token);
         const userRole = decodedToken.roles;
-
-        // Redirect based on user role
-        redirectBasedOnRole(userRole);
       }
       return response.data;
     });
 };
 
 // Fetch the current user
-const getCurrentUser = () => {
+const getCurrentUser = async () => {
   const token = localStorage.getItem("token");
   if (token) {
     const decodedToken = jwtDecode(token);
-    return decodedToken;
+    const userRole = decodedToken.sub;
+    const user = await axios
+      .get(`/api/auth/users/${jwtDecode(token).sub}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        // redirectBasedOnRole(userRole);
+        return res.data[0];
+        // Redirect based on user role
+      });
+    return user;
   }
   return null;
 };
 
 // Function to redirect based on user role
-const redirectBasedOnRole = (userRole) => {
+export const redirectBasedOnRole = (userRole) => {
   switch (userRole) {
     case "admin":
       // Redirect to admin page
@@ -55,7 +62,7 @@ const redirectBasedOnRole = (userRole) => {
       // Redirect to etudiant page
       window.location.href = "/etudiant";
       break;
-    case "employee":
+    case "employeur":
       // Redirect to employee page
       window.location.href = "/employee";
       break;

@@ -15,6 +15,8 @@ const ProfileDirector = () => {
         />
         <h2 className="nom">{user?.sub}</h2>
         <h4 id="title">Directeur </h4>
+        <h4 id="title">{user?.username} </h4>
+        <h4 id="title">{user?.mail} </h4>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { createDiploma, fetchAllDiplomas } from "../../redux/diplomaSlice";
 import { createToExportElement } from "./createPDF";
-import { fetchAllStudents } from "../../redux/studentSlice";
+import { fetchAllStudents, updateStudent } from "../../redux/studentSlice";
 
 const NoterEtudiant = ({ etudiant, setShowNoteForm }) => {
   const [web3, setWeb3] = useState(null);
@@ -17,39 +17,39 @@ const NoterEtudiant = ({ etudiant, setShowNoteForm }) => {
     stageValide: false,
   });
 
-  useEffect(() => {
-    const initWeb3 = async () => {
-      try {
-        const ethereumWeb3 = await getWeb3();
-        setWeb3(ethereumWeb3);
+  // useEffect(() => {
+  //   const initWeb3 = async () => {
+  //     try {
+  //       const ethereumWeb3 = await getWeb3();
+  //       setWeb3(ethereumWeb3);
 
-        // Replace 'VerifierContratEtudiant' with the actual name of your smart contract
-        const deployedNetwork =
-          VerificationContratEtudiant.networks[
-            Object.keys(VerificationContratEtudiant.networks)[0]
-          ];
-        const instance = new ethereumWeb3.eth.Contract(
-          VerificationContratEtudiant.abi,
-          deployedNetwork && deployedNetwork.address
-        );
+  //       // Replace 'VerifierContratEtudiant' with the actual name of your smart contract
+  //       const deployedNetwork =
+  //         VerificationContratEtudiant.networks[
+  //           Object.keys(VerificationContratEtudiant.networks)[0]
+  //         ];
+  //       const instance = new ethereumWeb3.eth.Contract(
+  //         VerificationContratEtudiant.abi,
+  //         deployedNetwork && deployedNetwork.address
+  //       );
 
-        setContract(instance);
-      } catch (error) {
-        console.error("Error initializing web3:", error);
-      }
-    };
+  //       setContract(instance);
+  //     } catch (error) {
+  //       console.error("Error initializing web3:", error);
+  //     }
+  //   };
 
-    initWeb3();
-  }, []);
+  //   initWeb3();
+  // }, []);
 
   const handleInputChange = (e) => {
     const { name, value, checked } = e.target;
-    console.log(checked);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value === "on" ? checked : value,
     }));
   };
+
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     console.log(formData);
@@ -61,6 +61,19 @@ const NoterEtudiant = ({ etudiant, setShowNoteForm }) => {
       formData.moyenne >= 10
     ) {
       try {
+        dispatch(
+          updateStudent({
+            studentId: etudiant.id,
+            student: {
+              ...etudiant,
+              b2Francais: formData.b2Francais,
+              b2Anglais: formData.b2Anglais,
+              moyenne: formData.moyenne,
+              stageValide: formData.stageValide,
+              admis: true,
+            },
+          })
+        );
         const result = await createToExportElement({
           hash: null,
           student: {
@@ -87,22 +100,23 @@ const NoterEtudiant = ({ etudiant, setShowNoteForm }) => {
           },
           signed: null,
         })
-          .then((res) =>
+          .then((res) => {
             dispatch(
               createDiploma({
-                hash: res?.data?.IpfsHash,
-                student: {
-                  id: etudiant.id,
+                data: {
+                  hash: res?.data?.IpfsHash,
+
+                  university: {
+                    id: 1,
+                  },
+                  director: {
+                    id: 2,
+                  },
                 },
-                university: {
-                  id: 1,
-                },
-                director: {
-                  id: 2,
-                },
+                student: etudiant.id,
               })
-            )
-          )
+            );
+          })
           .then(() => {
             alert("diplome generer avec success");
             dispatch(fetchAllStudents());
@@ -126,6 +140,20 @@ const NoterEtudiant = ({ etudiant, setShowNoteForm }) => {
         console.error("Error adding student details:", error);
       }
     } else {
+      dispatch(
+        updateStudent({
+          studentId: etudiant.id,
+          student: {
+            ...etudiant,
+            b2Francais: formData.b2Francais,
+            b2Anglais: formData.b2Anglais,
+            moyenne: formData.moyenne,
+            stageValide: formData.stageValide,
+            admis: false,
+          },
+        })
+      );
+      dispatch(fetchAllStudents());
       alert("Etudant Refusé");
     }
   };
@@ -218,8 +246,7 @@ export default NoterEtudiant;
 
 const FormModal = styled.div`
   width: 50vw;
-  max-width: 800px; /* Set a maximum width if needed */
-  /* height: auto; */
+  max-width: 800px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -236,16 +263,16 @@ const FormModal = styled.div`
     flex-direction: column;
   }
 
-  .form-modal label {
+  label {
     display: block;
     margin-bottom: 10px;
   }
 
-  .form-modal input {
+  input {
     margin-left: 15px;
   }
 
-  .form-modal button {
+  button {
     margin-top: 10px;
     background-color: #4caf50;
     color: white;
@@ -255,7 +282,7 @@ const FormModal = styled.div`
     cursor: pointer;
   }
 
-  .form-modal button:hover {
+  button:hover {
     background-color: #45a049;
   }
 `;

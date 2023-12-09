@@ -35,7 +35,7 @@ class StudentServices {
   updateStudent(studentId, student) {
     const token = localStorage.getItem("token");
 
-    return axios.put("/api/student" + "/" + studentId, student, {
+    return axios.put("/api/student/update" + "/" + studentId, student, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -1,12 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import AuthService from "../services/auth.services";
+import AuthService, { redirectBasedOnRole } from "../services/auth.services";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 // Async thunk for user login
 export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ username, password }) => {
     const response = await AuthService.login({ username, password });
-    return response.data;
+    // console.log(response);
+    const decodedToken = jwtDecode(response.token);
+    const userRole = decodedToken.roles;
+    const user = await axios
+      .get(`/api/auth/users/${jwtDecode(response.token).sub}`, {
+        headers: { Authorization: `Bearer ${response.token}` },
+      })
+      .then((res) => {
+        redirectBasedOnRole(userRole);
+        return res.data[0];
+        // Redirect based on user role
+      });
+
+    return await { ...response, ...user };
   }
 );
 
